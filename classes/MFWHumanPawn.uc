@@ -1,6 +1,6 @@
 class MFWHumanPawn extends KFHumanPawn;
 
-var Frag fragWeapons[2];
+var Frag fragWeapons[3];
 var int currFragIndex;
 
 replication {
@@ -20,9 +20,12 @@ function AddDefaultInventory() {
 
     super.AddDefaultInventory();
     for(inv= Inventory; inv != none; inv= inv.Inventory) {
-        if (FlameFrag(inv) != none) {
-            fragWeapons[index]= FlameFrag(inv);
+        if (MFWFrag(inv) != none) {
+            fragWeapons[index]= Frag(inv);
             currFragIndex= index;
+            index++;
+        } else if (FlameFrag(inv) != none) {
+            fragWeapons[index]= FlameFrag(inv);
             index++;
         } else if (MedicFrag(inv) != none) {
             fragWeapons[index]= MedicFrag(inv);
@@ -70,6 +73,7 @@ function WeaponDown() {
 
 
 defaultproperties {
-    RequiredEquipment(2)="MultiFragWeapon.FlameFrag"
-    RequiredEquipment(5)="MultiFragWeapon.MedicFrag"
+    RequiredEquipment(2)="MultiFragWeapon.MFWFrag"
+    RequiredEquipment(5)="MultiFragWeapon.FlameFrag"
+    RequiredEquipment(6)="MultiFragWeapon.MedicFrag"
 }
