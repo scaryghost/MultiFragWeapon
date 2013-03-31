@@ -26,3 +26,7 @@ function projectile SpawnProjectile(Vector Start, Rotator Dir) {
 
     return g;
 }
+
+defaultproperties {
+    AmmoClass=class'MultiFragWeapon.MFWFragAmmo'
+}

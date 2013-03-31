@@ -5,10 +5,10 @@ var int currFragIndex;
 
 replication {
     reliable if (Role == ROLE_Authority)
-        fragWeapons, currFragIndex;
+        fragWeapons, currFragIndex, updateHUD;
 }
 
-function updateHUD() {
+simulated function updateHUD() {
     if (PlayerController(Controller) != none && HUDKillingFloor(PlayerController(Controller).myHud) != none) {
         HUDKillingFloor(PlayerController(Controller).myHud).PlayerGrenade= fragWeapons[currFragIndex];
         HUDKillingFloor(PlayerController(Controller).myHud).GrenadeIcon.WidgetTexture= fragWeapons[currFragIndex].grenadeTexture;
