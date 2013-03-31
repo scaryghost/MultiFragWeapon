@@ -1,6 +1,6 @@
 class MFWHumanPawn extends KFHumanPawn;
 
-var Frag fragWeapons[3];
+var MFWFragBase fragWeapons[3];
 var int currFragIndex;
 
 replication {
@@ -11,6 +11,7 @@ replication {
 function updateHUD() {
     if (PlayerController(Controller) != none && HUDKillingFloor(PlayerController(Controller).myHud) != none) {
         HUDKillingFloor(PlayerController(Controller).myHud).PlayerGrenade= fragWeapons[currFragIndex];
+        HUDKillingFloor(PlayerController(Controller).myHud).GrenadeIcon.WidgetTexture= fragWeapons[currFragIndex].grenadeTexture;
     }
 }
 
@@ -20,15 +21,11 @@ function AddDefaultInventory() {
 
     super.AddDefaultInventory();
     for(inv= Inventory; inv != none; inv= inv.Inventory) {
-        if (MFWFrag(inv) != none) {
-            fragWeapons[index]= Frag(inv);
-            currFragIndex= index;
-            index++;
-        } else if (FlameFrag(inv) != none) {
-            fragWeapons[index]= FlameFrag(inv);
-            index++;
-        } else if (MedicFrag(inv) != none) {
-            fragWeapons[index]= MedicFrag(inv);
+        if (MFWFragBase(inv) != none) {
+            fragWeapons[index]= MFWFragBase(inv);
+            if (MFWFrag(inv) != none) {
+                currFragIndex= index;
+            }
             index++;
         }
     }
