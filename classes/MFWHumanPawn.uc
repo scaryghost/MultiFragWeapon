@@ -1,0 +1,1 @@
+class MFWHumanPawn extends KFHumanPawn;
