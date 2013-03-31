@@ -7,4 +7,5 @@ defaultproperties {
     Description="Flame Grenades"
     InventoryType=class'MultiFragWeapon.FlameFrag'
     PickupMessage="You got the Flame Grenades"
+    CorrespondingPerkIndex=5
 }

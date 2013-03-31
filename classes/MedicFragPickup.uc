@@ -7,4 +7,5 @@ defaultproperties {
     Description="Medic Grenades"
     InventoryType=class'MultiFragWeapon.MedicFrag'
     PickupMessage="You got the Medic Grenades"
+    CorrespondingPerkIndex=0
 }
