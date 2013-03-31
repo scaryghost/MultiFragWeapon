@@ -8,8 +8,10 @@ replication {
         fragWeapons, currFragIndex;
 }
 
-function Frag getCurrentFrag() {
-    return fragWeapons[currFragIndex];
+function updateHUD() {
+    if (PlayerController(Controller) != none && HUDKillingFloor(PlayerController(Controller).myHud) != none) {
+        HUDKillingFloor(PlayerController(Controller).myHud).PlayerGrenade= fragWeapons[currFragIndex];
+    }
 }
 
 function AddDefaultInventory() {
@@ -27,6 +29,7 @@ function AddDefaultInventory() {
             index++;
         }
     }
+    updateHUD();
 }
 
 exec function switchGrenade() {
@@ -39,7 +42,9 @@ exec function switchGrenade() {
             nextFragIndex= 0;
         }
     } until(fragWeapons[nextFragIndex] != none);
+
     currFragIndex= nextFragIndex;
+    updateHUD();
 }
 
 function ThrowGrenade() {
